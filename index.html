@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+	
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Rock-Paper-Scissors</title>
+
+        <!--
+        Author: Nikola Petrovski 
+        Date created: 29 V 2017
+        Date updated: 02 VI 2017
+        Version: 1
+
+        Purpose: 
+                Develop and publish a webpage for members to play a 
+                ROCK-PAPER-SCISSORS game that adhere to the given 
+				specifications. It applies inputs and outputs variables 
+				identification. Identifies the relationchips between the
+				data and functions required for modeling the system in
+				JavaScript.
+
+        Description:
+                This assignment shows how to build up a ROCK-PAPER-SCISSORS
+				Game played between user and computer. The user should
+				choose one of the three options listed in the game name
+				and the computer should  randomly choose one option as
+				well, then evaluate both selections as per game rules to
+				name a winner. Each option wins agains one item and loses
+				to another. For example, rock crushes scissors but is
+				covered by paper, paper covers rock but is cut by
+				scissors, and scissors is crushed by rock but cuts paper.
+				The game will end once it is determined which item is
+				stronger and the winner is declared. When game ends, user
+				is given an option to start playing again.
+        -->
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<style>
+			header, main, footer {
+				text-align: center;
+				width: 100%;
+				font-family: Helvetica,Arial,"Lucida Grande",sans-serif;
+			}
+			body {
+				background-color: #98FB98;
+				font-size: 1em;
+			}
+			button {
+				background-color: white;
+				border-radius: 10px;
+				font-size: 100%;
+				text-align: center;
+				margin: 10px;
+			}
+			@media all and ( max-device-width: 640px ) and 
+				( max-width: 640px ){
+					h1 {
+						display: none;
+					}
+				body {		
+					margin:0; 
+					padding:0;
+					width: 100%;
+					}
+				}
+		</style>
+
+	</head>
+
+	<body>
+		<header>
+			<h1>Welcome to Rock-Paper-Scissors</h1>
+			<h2 id="result">User vs. Computer</h2>
+			<h3>Please Select One of the Items to Play</h3>
+		</header>
+
+		<main>
+			<div id="userSelection">
+				
+				<button type="button" id="rock" onclick="playWith('rock')">
+				<strong>Rock &#9729;</strong></button>
+				
+				<button type="button" id="paper" onclick="playWith('paper')">
+				<strong>Paper &#128196;</strong></button>
+				
+				<button type="button" id="scissors" 
+				onclick="playWith('scissors')">
+				<strong>Scissors &#9988;</strong></button>
+			
+			</div>
+			<button onclick="startGame();">Play</button>
+		</main>
+
+		<footer> 
+			<address>Nikola Petrovski, 2017 &copy; SYST10199 Web Programming,
+			Sheridan College</address>
+		</footer>
+
+	<script>
+
+		// Declares and Initializes global variable.
+		var userOption = undefined;
+
+		function playWith(option){
+			// Updates previously selected item (if applicable)
+			if (userOption != undefined) {
+				userSelection = document.getElementById(userOption);
+				// Removes the green color from a "clicked" button.
+				userSelection.style.color = "black";
+			}	 		
+			// Selects the user option and adds a green color
+			userOption = option;
+			userSelection = document.getElementById(option);
+			userSelection.style.color = "green";
+		}
+
+		// Evaluates relations between items based on game rules.
+		function evaluate(userSelection, computerSelection) {
+			if(userSelection == undefined) {
+				return "Please, click on a selection to play."
+			}	
+
+			if (userSelection == computerSelection) {
+				return "It is a tie!";
+			}
+
+			if (userSelection == "rock") {
+				if (computerSelection == "scissors") {
+					return "Congratulations! You won!";
+				} 
+				else {
+					return "The computer won. Try again.";
+				}
+			}
+
+			else if (userSelection == "paper") {
+				if (computerSelection == "rock") {
+				return "Congratulations! You won!" ;
+				} 
+				else if("scissors") {
+				return "The computer won. Try again." ;
+				}
+			}
+
+			else if (userSelection == "scissors") {
+				if (computerSelection == "rock") {
+				return "The computer won. Try again.";
+				}
+				else {
+				return "Congratulations! You won!";
+				}
+			}
+		}
+
+		// Initializes local variable for random Computer play selection.
+		function startGame(){
+			var computerOption = Math.random();
+			if (computerOption <0.34){
+				computerOption = "rock";
+			}else if(computerOption <=0.67){
+				computerOption = "paper";
+			}else{
+				computerOption = "scissors";
+			}
+
+			// Stores the output result and displays message.
+			resultMessage = evaluate(userOption, computerOption);
+
+			document.getElementById("result").innerHTML = 
+			"<p>User: " + userOption + "  vs.  Computer: " 
+			+ computerOption + "</p> <p>" + resultMessage + "</p>";
+		}
+    </script>
+
+    </body>
+</html>
