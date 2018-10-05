@@ -1,3 +1,3 @@
 # Rock-Paper-Scissors-Game
 
-This
+This JavaScript project shows how to build up a ROCK-PAPER-SCISSORS game played between user and computer. The user chooses one of the three options listed in the game name and the computer randomly chooses one option as well, then it evaluates both selections as per game rules to name a winner. Each option wins agains one item and loses to another. For example, rock crushes scissors but is covered by paper, paper covers rock but is cut by scissors, and scissors is crushed by rock but cuts paper. The game ends once it is determined which item is stronger and the winner is declared. When game ends, user is given an option to start playing again.
